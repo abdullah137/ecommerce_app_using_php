@@ -1,0 +1,17 @@
+# Use PHP5 Single php.ini as default
+#AddHandler application/x-httpd-php5s .php
+
+DirectoryIndex index.php home.php index.html index.htm index.cgi index.pl default.htm
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [NC,L]
+
+RewriteRule ^edit-address/([a-zA-Z0-9_-]+)$ edit-address.php?slugid=$1
+RewriteRule ^edit-address/([a-zA-Z0-9_-]+)/$ edit-address.php?slugid=$1
+
+RewriteRule ^checkout/([a-zA-Z0-9_-]+)$ checkout.php?location=$1
+RewriteRule ^checkout/([a-zA-Z0-9_-]+)/$ checkout.php?location=$1
+
+RewriteRule ^complete-order/([a-zA-Z0-9_-]+)$ complete-order.php?order=$1
+RewriteRule ^complete-order/([a-zA-Z0-9_-]+)/$ complete-order.php?order=$1
