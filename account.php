@@ -3,6 +3,7 @@ $page = "account";
 include "controllers/firstcalls.php"; 
 $user = getUserDetails();
 if($user == 0) {
+    echo "It is here now";
     // redirect them to the login page
     header('location:/'.custom_site_base()."login?ref=false");
 }else {
@@ -21,18 +22,13 @@ if(isset($_POST['update_button'])){
 	if($_POST['f_name'] == "" || $_POST['f_name'] == NULL || $_POST['s_name'] == "" || $_POST['s_name'] == NULL || $_POST['s_name'] == "" || $_POST['s_name'] == NULL || $_POST['email'] == "" || $_POST['email'] == NULL || $_POST['dob_day'] == "" || $_POST['dob_day'] == NULL || $_POST['dob_month'] == "" || $_POST['dob_month'] == NULL || $_POST['dob_year'] == "" || $_POST['dob_year'] == NULL || $_POST['gender'] == "" || $_POST['gender'] == NULL || $_POST['phone'] == "" || $_POST['phone'] == NULL){
 		if($_POST['f_name'] == "" || $_POST['f_name'] == NULL){ $err = "First name";$i++;}
 		if($_POST['s_name'] == "" || $_POST['s_name'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Last name";$i++;}
-		if($_POST['s_name'] == "" || $_POST['s_name'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Last name";$i++;}
 		if($_POST['email'] == "" || $_POST['email'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Email";$i++;}
-		if($_POST['dob_day'] == "" || $_POST['dob_day'] == NULL || $_POST['dob_month'] == "" || $_POST['dob_month'] == NULL || $_POST['dob_year'] == "" || $_POST['dob_year'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Date of birth";$i++;}
-		if($_POST['gender'] == "" || $_POST['gender'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Gender";$i++;}
+        if($_POST['address'] == "" || $_POST['address'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Address";$i++;}
 		if($_POST['phone'] == "" || $_POST['phone'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Phone";$i++;}
 		$mmsg = "<span class=\"alert_this_message\">Please complete the following fields:<br><i>".$err."</i>.</span>";
 	}
-	else if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $_POST['email'])){
-		$mmsg = "<span class=\"alert_this_message\">Please enter a valid email address</span>";
-	}
 	else{
-		$dob = date("Y-m-d", strtotime($_POST['dob_year']."-".$_POST['dob_month']."-".$_POST['dob_day']));
+		
 		$mmsg = updateAccount($_POST['f_name'], $_POST['s_name'], $_POST['email'], $dob, $_POST['gender'], $_POST['phone'], $user['u_id']);
 		$user = getUserDetails();
 	}
@@ -88,13 +84,13 @@ echo headerInfo($page);
                                 </div> -->
                                 <div class="ec-vendor-block-items">
                                     <ul>
-                                        <li><a href="account">User Profile</a></li>
+                                        <li><a href="account">Dashboard</a></li>
                                         <li><a href="history">History</a></li>
                                         <li><a href="wishlist">Wishlist</a></li>
                                         <li><a href="cart">Cart</a></li>
                                         <li><a href="checkout">Checkout</a></li>
                                         <li><a href="track-order">Track Order</a></li>
-                                        
+                                        <li><a href="logout">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

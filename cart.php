@@ -1,10 +1,11 @@
 <?php
 $page = "cart";
-include "includes/header.php";
+include "controllers/firstcalls.php"; 
+echo headerInfo($page);
 ?>
 
     <!-- ekka Cart Start -->
-   <?php include "includes/cart.php"; ?>
+   <?php echo cart($page); ?>
     <!-- ekka Cart End -->
 
     <!-- Ec breadcrumb start -->
@@ -53,82 +54,7 @@ include "includes/header.php";
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td data-label="Product" class="ec-cart-pro-name"><a
-                                                            href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                src="assets/images/product-image/1.jpg"
-                                                                alt="" />Stylish Baby Shoes</a></td>
-                                                    <td data-label="Price" class="ec-cart-pro-price"><span
-                                                            class="amount">$56.00</span></td>
-                                                    <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                        style="text-align: center;">
-                                                        <div class="cart-qty-plus-minus">
-                                                            <input class="cart-plus-minus" type="text"
-                                                                name="cartqtybutton" value="1" />
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="Total" class="ec-cart-pro-subtotal">$56.00</td>
-                                                    <td data-label="Remove" class="ec-cart-pro-remove">
-                                                        <a href="#"><i class="ecicon eci-trash-o"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Product" class="ec-cart-pro-name"><a
-                                                            href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                src="assets/images/product-image/2.jpg"
-                                                                alt="" />Unisex Fully Solid Hoodie</a></td>
-                                                    <td data-label="Price" class="ec-cart-pro-price"><span
-                                                            class="amount">$75.00</span></td>
-                                                    <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                        style="text-align: center;">
-                                                        <div class="cart-qty-plus-minus">
-                                                            <input class="cart-plus-minus" type="text"
-                                                                name="cartqtybutton" value="1" />
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="Total" class="ec-cart-pro-subtotal">$75.00</td>
-                                                    <td data-label="Remove" class="ec-cart-pro-remove">
-                                                        <a href="#"><i class="ecicon eci-trash-o"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Product" class="ec-cart-pro-name"><a
-                                                            href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                src="assets/images/product-image/3.jpg"
-                                                                alt="" />Beautiful T-shirt For Women</a></td>
-                                                    <td data-label="Price" class="ec-cart-pro-price"><span
-                                                            class="amount">$48.00</span></td>
-                                                    <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                        style="text-align: center;">
-                                                        <div class="cart-qty-plus-minus">
-                                                            <input class="cart-plus-minus" type="text"
-                                                                name="cartqtybutton" value="1" />
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="Total" class="ec-cart-pro-subtotal">$48.00</td>
-                                                    <td data-label="Remove" class="ec-cart-pro-remove">
-                                                        <a href="#"><i class="ecicon eci-trash-o"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-label="Product" class="ec-cart-pro-name"><a
-                                                            href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
-                                                                src="assets/images/product-image/4.jpg"
-                                                                alt="" />Wool Hat For Men</a></td>
-                                                    <td data-label="Price" class="ec-cart-pro-price"><span
-                                                            class="amount">$95.00</span></td>
-                                                    <td data-label="Quantity" class="ec-cart-pro-qty"
-                                                        style="text-align: center;">
-                                                        <div class="cart-qty-plus-minus">
-                                                            <input class="cart-plus-minus" type="text"
-                                                                name="cartqtybutton" value="1" />
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="Total" class="ec-cart-pro-subtotal">$95.00</td>
-                                                    <td data-label="Remove" class="ec-cart-pro-remove">
-                                                        <a href="#"><i class="ecicon eci-trash-o"></i></a>
-                                                    </td>
-                                                </tr>
+                                                <?php echo cart_page($page); ?>
                                             </tbody>
                                         </table>
                                     </div>

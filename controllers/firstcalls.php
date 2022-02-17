@@ -506,6 +506,97 @@ function getRandomProducts($limit) {
     return $data;
 }
 
+
+function getOrderProducts($id){
+	global $database;
+	$query = "SELECT * FROM orders_products
+			LEFT JOIN products ON products.prod_id = orders_products.products_prod_id
+			LEFT JOIN product_images ON product_images.products_prod_id = products.prod_id
+			WHERE orders_o_id = '".mysqli_real_escape_string($database, $id)."'";
+	$result = mysqli_query($database, $query);
+	if(mysqli_num_rows($result) == 0){
+		$data = 0;
+	}
+	else{
+		while($answer = mysqli_fetch_assoc($result)){
+			$data[] = $answer;
+		}
+	}
+	return $data;
+}
+function resetPassword($email){
+	global $database;
+	$query = "SELECT * FROM users
+			LEFT JOIN users_forgot ON users_forgot.users_u_id = users.u_id
+			WHERE u_email = '".mysqli_real_escape_string($database, $email)."'";
+	$result = mysqli_query($database, $query);
+	if(mysqli_num_rows($result) == 0){
+		$data = "The email address you entered does not exist in our database";
+	}
+	else{
+		$answer = mysqli_fetch_assoc($result);
+		$verCode = sha1(mt_rand(10000,90000).mt_rand(11,121));
+		if($answer['uf_key'] != "" && $answer['uf_key'] != NULL){
+			$updq = "UPDATE users_forgot
+					SET uf_key= '".$verCode."'
+					WHERE users_u_id = '".$answer['u_id']."'";
+			$updrr = mysqli_query($database, $updq);
+		}
+		else{
+			$insq = "INSERT INTO users_forgot
+					(users_u_id, uf_key) VALUES 
+					('".$answer['u_id']."', '".$verCode."')";
+			$insr = mysqli_query($database, $insq);
+		}
+		
+		$subject = "Password reset on your ".siteName()." account";
+		$message = "You have requested us to reset your ".siteName()." password. 
+							
+To do so, please click the following link:
+".siteLink()."/reset-password?i=".$verCode."&j=".md5(mt_rand(10000,90000).mt_rand(11,121))."&k=".$answer['u_id']."
+
+Thank you.
+
+
+***NOTE*** This is a post-only mailing.  Replies to this message are not monitored or answered.";	
+		$headers = "From: noreply@tfc.com.ng\r\n" .
+		"Reply-To: noreply@tfc.com.ng\r\n" .
+		'X-Mailer: PHP/' . phpversion();
+		mail($email, $subject, $message, $headers);
+		$completed = TRUE;
+		$data = "A reset link has been created for you.<br />Please check your e-mail (".$email.") for the link and complete the process.";
+	}
+	return $data;
+}
+function resetVerify($password, $userid, $code){
+	global $database;
+	$query = "SELECT * FROM users
+			LEFT JOIN users_forgot ON users_forgot.users_u_id = users.u_id
+			WHERE u_id = '".mysqli_real_escape_string($database, $userid)."'
+			AND uf_key = '".mysqli_real_escape_string($database, $code)."'";
+	$result = mysqli_query($database, $query);
+	if(mysqli_num_rows($result) == 0){
+		header("Location: /".custom_site_base()."forgot?reset=fail");
+		exit;
+	}
+	else{
+		$password = sha1($password.salt());
+		$updq = "UPDATE users SET u_pass = '".mysqli_real_escape_string($database, $password)."'
+			WHERE u_id = '".mysqli_real_escape_string($database, $userid)."'";
+		$updr = mysqli_query($database, $updq);
+		if(!$updr){
+			$data = genericError();
+		}
+		else{
+            echo "3";
+			$_SESSION['u_auth'] = md5($userid);
+			header("Location: /".custom_site_base()."account");
+			exit;
+		}
+	}
+	return $data;
+}
+
 function getGenderProducts($gender) {
     global $database;
     $query = "SELECT * FROM products LEFT JOIN product_images ON product_images.products_prod_id = products.prod_id
@@ -540,7 +631,7 @@ function logInUser($email, $pass, $ref) {
     $result = mysqli_query($database, $query);
     if(mysqli_num_rows($result) > 0) {
         $answer = mysqli_fetch_assoc($result);
-        $_SESSION['u_ath'] = md5($answer['u_id']);
+        $_SESSION['u_auth'] = md5($answer['u_id']);
         if(isset($ref) && $ref == "checkout") {
             header('location: /'.custom_site_base()."checkout");
 
@@ -775,14 +866,14 @@ function ajaxAddAddress($f_name, $s_name, $phone, $street, $city, $lga, $default
 	}
 	return $data;
 }
-function addAddress($f_name, $s_name, $phone, $street, $city, $lga, $default, $id){
+function addAddress($f_name, $s_name, $phone, $street, $city, $lga, $default, $id, $extra){
 	global $database;
 	$query = "SELECT * FROM users_addresses
 		WHERE users_u_id = '".mysqli_real_escape_string($database, $id)."'";
 	$result = mysqli_query($database, $query);
 	if(mysqli_num_rows($result) == 0){
 		$default = 1;
-		$data = insertAddress($f_name, $s_name, $phone, $street, $city, $lga, $id, $default);
+		$data = insertAddress($f_name, $s_name, $phone, $street, $city, $lga, $id, $default, $extra);
 	}
 	else{
 		$exists = FALSE;

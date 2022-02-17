@@ -1,40 +1,20 @@
 <?php
-$page = "create";
+$page = "login";
 include "controllers/firstcalls.php";
-
-if(isset($_POST['create_button'])) {
-    $get_status = $_GET['ref'];
-    $err = "";
-    $i = 0;
-	if($_POST['f_name'] == "" || $_POST['f_name'] == NULL ||
-     $_POST['s_name'] == "" || $_POST['s_name'] == NULL || $_POST['s_name'] == ""
-      || $_POST['s_name'] == NULL || $_POST['email'] == "" || $_POST['email'] == NULL
-       || $_POST['gender'] == "" || $_POST['gender'] == NULL || $_POST['phone'] == "" ||
-        $_POST['phone'] == NULL || $_POST['pass'] == "" || $_POST['pass'] == NULL || $_POST['city'] == "" || $_POST['city'] == NULL ||
-         $_POST['cpass'] == "" || $_POST['cpass'] == NULL || $_POST['terms'] != "yes"){
-		if($_POST['f_name'] == "" || $_POST['f_name'] == NULL){ $err = "First name";$i++;}
-		if($_POST['s_name'] == "" || $_POST['s_name'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Last name";$i++;}
-		if($_POST['email'] == "" || $_POST['email'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Email";$i++;}
-		if($_POST['gender'] == "" || $_POST['gender'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Gender";$i++;}
-		if($_POST['phone'] == "" || $_POST['phone'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Phone";$i++;}
-		if($_POST['city'] == "" || $_POST['city'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "City";$i++;}
-		if($_POST['address'] == "" || $_POST['address'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Address";$i++;}
-		if($_POST['pass'] == "" || $_POST['pass'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Password";$i++;}
-		if($_POST['cpass'] == "" || $_POST['cpass'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Confirm Password";$i++;}
-		if(@$_POST['terms'] != "yes"){ if($i > 0){ $err .= ", ";} $err .= "Terms of Use Agreement";$i++;}
+if(isset($_POST['reset_button'])){
+	$i = 0;
+	if($_POST['email'] == "" || $_POST['email'] == NULL){
 		$mmsg = '
         <div class="recent-purchase">
         <img src="assets/images/product-image/1.jpg" alt="payment image">
         <div class="detail">
-            <p>Important Message</p>
-            <p>Please complete the following fields:<br><i>"'.$err.'"</i>. </p>
+            <p class="text-danger">Important Message</p>
+            <p>Please enter your email"</i>. </p>
         </div>
         <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
     </div>
         ';
-        
-        $completed = FALSE;
-    }
+	}
 	else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 		$mmsg = '
         <div class="recent-purchase">
@@ -47,31 +27,16 @@ if(isset($_POST['create_button'])) {
     </div>
         ';
 	}
-	else if($_POST['pass'] != $_POST['cpass']){
-         $mmsg = '
-        <div class="recent-purchase">
-        <img src="assets/images/product-image/1.jpg" alt="payment image">
-        <div class="detail">
-            <p>Important Message</p>
-            <pThe passwords you entered do not match</p>
-        </div>
-        <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
-    </div>
-        ';
-        $completed = FALSE;
-	}
 	else{
-	    $mmsg = createAccount($_POST['f_name'], $_POST['s_name'], $_POST['email'], $_POST['address'], $_POST['city'],$_POST['gender'], $_POST['phone'], $_POST['pass'], $get_status);
-        $completed = TRUE;
-    }
-} else {
-    $mmsg = "";
+		$mmsg = resetPassword($_POST['email']);
+	}
 }
-
-echo headerInfo($page);
+else{
+	$mmsg = "Forgot my password";
+}
+echo headerInfo($page)
 ?>
 
- 
     <!-- Ec breadcrumb start -->
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
@@ -79,13 +44,13 @@ echo headerInfo($page);
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">Register</h2>
+                            <h2 class="ec-breadcrumb-title">Forget Password</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="ec-breadcrumb-item active">Register</li>
+                                <li class="ec-breadcrumb-item active">forgot</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
                         </div>
@@ -96,104 +61,31 @@ echo headerInfo($page);
     </div>
     <!-- Ec breadcrumb end -->
 
-    <!-- Start Register -->
+    <!-- Ec login page -->
     <section class="ec-page-content section-space-p">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="section-title">
-                        <h2 class="ec-bg-title">Register</h2>
-                        <h2 class="ec-title">Register</h2>
+                        <h2 class="ec-bg-title">Forget Password</h2>
+                        <h2 class="ec-title">Forget Password</h2>
                         <p class="sub-title mb-3">Best place to buy and sell digital products</p>
                     </div>
                 </div>
-                <div class="ec-register-wrapper">
-                    <div class="ec-register-container">
-                        <div class="ec-register-form">
-                            <form method="post">
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>First Name*</label>
-                                    <input type="text" name="f_name" value="<?php  if(isset($_POST['f_name'])) { echo $_POST['f_name']; } ; ?>" placeholder="Enter your first name"  />
+                <div class="ec-login-wrapper">
+                    <div class="ec-login-container">
+                        <div class="ec-login-form">
+                            <form action="#" method="post">
+                                <span class="ec-login-wrap">
+                                    <label>Email Address*</label>
+                                    <input type="email" name="email" placeholder="Enter your email add..."  />
                                 </span>
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>Last Name*</label>
-                                    <input type="text" name="s_name" value="<?php  if(isset($_POST['s_name'])) { echo $_POST['s_name']; } ; ?>"  placeholder="Enter your last name"  />
+                                <span class="ec-login-wrap ec-login-fp">
+                                    <label><a href="#">Remember your Password Already?</a></label>
                                 </span>
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>Email*</label>
-                                    <input type="email" name="email" value="<?php  if(isset($_POST['email'])) { echo $_POST['email']; } ; ?>"  placeholder="Enter your email add..."  />
-                                </span>
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>Phone Number*</label>
-                                    <input type="text"   value="<?php  if(isset($_POST['phone'])) { echo $_POST['phone']; } ; ?>"  name="phone" placeholder="Enter your phone number"
-                                         />
-                                </span>
-                                <span class="ec-register-wrap">
-                                    <label>Address</label>
-                                    <input type="text" name="address" placeholder="Address Line 1" />
-                                </span>
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>Gender*</label>
-                                         <span class="ec-rg-select-inner">
-                                    <select name="gender" id="ec-select-city"
-                                            class="ec-register-select">
-                                            
-                                            <option value="<?php if(isset($_POST['gender'])) { echo $_POST['gender']; } ; ?>" selected > <?php  
-                                            if(isset($_POST['gender'])) { 
-                                                if($_POST['gender'] == "1") {
-                                                    echo "Male";
-                                                }else if($_POST['gender'] == "2") {
-                                                    echo "Female";
-                                                } else echo "Select Gender";
-                                             } else echo "Select Gender"; ?> </option>
-                                            <option value="1">Male</option>
-                                            <option value="2">Female</option>
-                                        </select>
-                                    </span>
-                                </span>
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>City *</label>
-                                    <span class="ec-rg-select-inner">
-                                        <select name="city" id="ec-select-city" class="ec-register-select">
-                                            <option value="<?php if(isset($_POST['city'])) { echo $_POST['city']; } ; ?>" selected> <?php 
-                                             if(isset($_POST['city']) )
-                                             
-                                             { 
-                                                 if($_POST['city'] == "1") {
-                                                     echo "Lagos";
-                                                 }else if($_POST['city'] == "2"){
-                                                     echo "Ondo";
-                                                 }else if($_POST['city'] == "3") {
-                                                     echo "Abuja";
-                                                 }else if($_POST['city'] == "4") {
-                                                     echo "Kaduna";
-                                                 } else echo "Select City";
-                                                  } else echo "Select City"; ?></option>
-                                            <option value="1">Lagos</option>
-                                            <option value="2">Ondo</option>
-                                            <option value="3">Abuja</option>
-                                            <option value="4">Kaduna</option>
-                                        </select>
-                                    </span>
-                                </span>
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>Password *</label>
-                                    <input type="password" name="pass" placeholder="Enter Your Password" />
-                                </span>
-                                <span class="ec-register-wrap ec-register-half">
-                                    <label>Confirm Password *</label>
-                                    <input type="password" name="cpass" placeholder="Enter Your Confirm Password" />
-                                </span>
-                                <span class="ec-register-wrap">
-                                    <input name="terms" type="checkbox" value="yes" title='Yes, I have read and agree to the Terms and Conditions *"'
-                                     style="float: left; display:inline; width: 50px; height: 20px; border: 1px solid" /> 
-                                     <b>Yes</b>, I have agreed read and agree to the <a href="terms-condition" style="font-weight: bold; color: #3E7BD6;" target="__blank">terms and conditions</a>*.
-                                </span>
-                                <span class="ec-register-wrap">
-                                    <input type="checkbox" name="mailme" title="I would like <?php echo siteName(); ?> to send me information about promotions, products and services that might be of interest to me." style="float: left; display:inline; width: 50px; height: 20px; border: 1px solid" checked/> <b>Yes</b>, I would like Order Tastee to send me information about promotions, products and services that might be of interest to me.*.
-                                </span>
-                                <span class="ec-register-wrap ec-register-btn">
-                                    <button name="create_button" class="btn btn-primary" type="submit">Register</button>
+                                <span class="ec-login-wrap ec-login-btn">
+                                    <button name="reset_button" class="btn btn-primary" type="submit">Forget</button>
+                                   
                                 </span>
                             </form>
                         </div>
@@ -202,7 +94,6 @@ echo headerInfo($page);
             </div>
         </div>
     </section>
-    <!-- End Register -->
 
     <!-- Footer Start -->
     <footer class="ec-footer section-space-mt">
@@ -231,7 +122,7 @@ echo headerInfo($page);
                                         <li class="ec-footer-link">71 Pilgrim Avenue Chevy Chase, east california.</li>
                                         <li class="ec-footer-link"><span>Call Us:</span><a href="tel:+440123456789">+44
                                                 0123 456 789</a></li>
-                                        <li class="ec-footer-link"><span>Email:</span><a href="https://loopinfosol.in/cdn-cgi/l/email-protection#85e0fde4e8f5e9e0c5e0e6a8e0e8e4ece9abe6eae8"><span class="__cf_email__" data-cfemail="4f642a372e223f232a0f2a2c622a222e2623612c2022">[email&#160;protected]</span></a></li>
+                                        <li class="ec-footer-link"><span>Email:</span><a href="https://loopinfosol.in/cdn-cgi/l/email-protection#6a0f120b071a060f2a0f09470f070b030644090507"><span class="__cf_email__" data-cfemail="6f440a170e021f030a2f0a0c420a020e0603410c0002">[email&#160;protected]</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -288,7 +179,7 @@ echo headerInfo($page);
                                         <form id="ec-newsletter-form" name="ec-newsletter-form" method="post"
                                             action="#">
                                             <div id="ec_news_signup" class="ec-form">
-                                                <input class="ec-email" type="email" =""
+                                                <input class="ec-email" type="email" required=""
                                                     placeholder="Enter your email here..." name="ec-email" value="" />
                                                 <button id="ec-news-btn" class="button btn-primary" type="submit"
                                                     name="subscribe" value=""><i class="ecicon eci-paper-plane-o"
@@ -343,9 +234,6 @@ echo headerInfo($page);
     </footer>
     <!-- Footer Area End -->
 
-    <?php
-        echo $mmsg;
-    ?>
 
     <!-- Footer navigation panel for responsive display -->
     <div class="ec-nav-toolbar">
@@ -378,7 +266,11 @@ echo headerInfo($page);
     </div>
     <!-- Footer navigation panel for responsive display end -->
 
-    
+    <!-- Recent Purchase Popup  -->
+   <?php 
+        echo $mmsg;
+   ?>
+    <!-- Recent Purchase Popup end -->
 
     <!-- Cart Floating Button -->
     <div class="ec-cart-float">
@@ -513,6 +405,72 @@ echo headerInfo($page);
     </div>
     <!-- Whatsapp end -->
 
+    <!-- Feature tools -->
+    <div class="ec-tools-sidebar-overlay"></div>
+    <div class="ec-tools-sidebar">
+        <div class="tool-title">
+            <h3>Features</h3>
+        </div>
+        <a href="#" class="ec-tools-sidebar-toggle in-out">
+            <img alt="icon" src="assets/images/common/settings.png" />
+        </a>
+        <div class="ec-tools-detail">
+            <div class="ec-tools-sidebar-content ec-change-color ec-color-desc">
+                <h3>Color Scheme</h3>
+                <ul class="bg-panel">
+                    <li class="active" data-color="01"><a href="#" class="colorcode1"></a></li>
+                    <li data-color="02"><a href="#" class="colorcode2"></a></li>
+                    <li data-color="03"><a href="#" class="colorcode3"></a></li>
+                    <li data-color="04"><a href="#" class="colorcode4"></a></li>
+                    <li data-color="05"><a href="#" class="colorcode5"></a></li>
+                </ul>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>Backgroung</h3>
+                <ul class="bg-panel">
+                    <li class="bg"><a class="back-bg-1" id="bg-1">Background-1</a></li>
+                    <li class="bg"><a class="back-bg-2" id="bg-2">Background-2</a></li>
+                    <li class="bg"><a class="back-bg-3" id="bg-3">Background-3</a></li>
+                    <li class="bg"><a class="back-bg-4" id="bg-4">Default</a></li>
+                </ul>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>Full Screen mode</h3>
+                <div class="ec-fullscreen-mode">
+                    <div class="ec-fullscreen-switch">
+                        <div class="ec-fullscreen-btn">Mode</div>
+                        <div class="ec-fullscreen-on">On</div>
+                        <div class="ec-fullscreen-off">Off</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>Dark mode</h3>
+                <div class="ec-change-mode">
+                    <div class="ec-mode-switch">
+                        <div class="ec-mode-btn">Mode</div>
+                        <div class="ec-mode-on">On</div>
+                        <div class="ec-mode-off">Off</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>RTL mode</h3>
+                <div class="ec-change-rtl">
+                    <div class="ec-rtl-switch">
+                        <div class="ec-rtl-btn">Rtl</div>
+                        <div class="ec-rtl-on">On</div>
+                        <div class="ec-rtl-off">Off</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>Clear local storage</h3>
+                <a class="clear-cach" href="javascript:void(0)">Clear Cache & Default</a>
+            </div>
+        </div>
+    </div>
+    <!-- Feature tools end -->
 
     <!-- Vendor JS -->
     <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
@@ -537,5 +495,5 @@ echo headerInfo($page);
 
 </body>
 
-<!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Nov 2021 05:42:57 GMT -->
+<!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Nov 2021 05:43:01 GMT -->
 </html>

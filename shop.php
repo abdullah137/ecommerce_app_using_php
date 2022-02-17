@@ -715,27 +715,9 @@ echo headerInfo($page);
     </div>
     <!-- Footer navigation panel for responsive display end -->
 
+        <div class="popup"></div>
 
-
-    <!-- Cart Floating Button -->
-    <div class="ec-cart-float text-center">
-        <a href="#ec-side-cart" style="width: 100%;" class="ec-header-btn ec-side-toggle">
-            <div class="header-icon">
-                <img src="assets/images/icons/check.gif" class="svg_img header_svg" alt="" />
-            </div>
-           <span> Added to your Cart<br /> <br /> <b>
-               $4,000
-
-            </b> 
-            <br /><br />
-            Clothes
-            <br />
-            <br />
-            <button class="btn btn-success" type="submit">Proceed to Checkout</button> 
-        </span>
-        </a>
-    </div>
-    <!-- Cart Floating Button end -->
+ 
 
     <!-- Whatsapp -->
     <div class="ec-style ec-right-bottom">
@@ -889,12 +871,100 @@ echo headerInfo($page);
                 // var clickedAnchor = $(e.target);
                 // var product_type = clickedAnchor.parents('.pro-gl-content').find('input[name="product_type"]').val();
                 var elem = $(this);
-                var idName = elem.attr('class');
+                var className = elem.attr('class');
+                var strippedName = className.replace("addCart ","");
+                
+                var product_type = $('.'+strippedName+'>input[name="product_type"]').val()
+                var product_id = $('.'+strippedName+'>input[name="product_id"]').val()
+                var product_name = $('.'+strippedName+'>input[name="product_name"]').val()
+                var product_price = $('.'+strippedName+'>input[name="product_price"]').val()
+                var product_url = $('.'+strippedName+'>input[name="product_url"]').val()
 
-                var svg = $('.shop_8>input[name="product_price"]').val();
-                alert(idName);
+                if(product_url == "" || product_price == "" || product_name == "" || product_id == "" || product_type == ""
+                || product_name == null || product_id == null || product_price == null || product_id == null ) {
+                    console.log("Please fill all these");
+                }else {
+                    // passing the request via ajax
+                    $.post("/<?php echo custom_site_base(); ?>functions/cart_add.php", {
+                      
+                        product_type: product_type,
+                        product_id: product_id,
+                        product_name: product_name,
+                        product_price: product_price,
+                        product_url: product_url
+
+                    }, 
+                    
+                    function(data, status) {
+                      if(status == "success") {
+                          console.log("It has landed here oo");
+                          reloadCart(data, product_name, product_price)
+                      } 
+                    });
+                    
+                }
+                
            });
         });
+
+        function reloadCart(data, name, price) {
+            if(data != 0) {
+                data = JSON.parse(data);
+                var deliveryFee = 150;
+                var cartContent = '';
+                var cartSubtotal = 0;
+                var cartTotal = 0;
+                var cartQty = 0;
+                $.each(data, function(i, value) {
+                    // alert(i+": "+value.id);
+                    cartQty = cartQty + parseInt(value.count);
+                    cartSubtotal = cartSubtotal + parseFloat(value.price * value.count);
+
+                    cartContent = cartContent + '<li> <a href="" class="sidekka_pro_img"><img'+
+                             '   src=\"'+value.url+'\" alt="product"></a>'+
+                      '  <div class="ec-pro-content">'+
+                        '    <a href="" class="cart_pro_title">'+value.name+'</a>'+
+                           ' <span class="cart-price"><span>'+parseFloat(value.price).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')+'</span> x <span class=\"count\">'+parseInt(cartQty).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')+'</span></span>'+
+                          '  <div class="qty-plus-minus"> <input class=\"qty-input\" type=\"text\" name=\"ec_qtybtn\" value=\"1\" /></div>'
+                           ' <a href="javascript:void(0)" class="remove">×</a>'
+                       ' </div></li>';
+                });
+
+                cartTotal = cartSubtotal+parseFloat(deliveryFee);
+			$('.cart_subtotal').text('₦'+parseFloat(cartSubtotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+			$('.cart_dfee').text('₦'+parseFloat(deliveryFee).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+			$('.cart_total').text('₦'+parseFloat(cartTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+			$('.eccart-pro-items').html(cartContent);
+			$('.cart_summary .count').text(parseInt(cartQty).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+			//alert(cartQty);
+			if(cartQty > 1){
+				$('.cart_summary .count_text').text('items');
+			}
+			completionAlert(name, price);
+			if(cartQty == 0){
+				$('.cart-table').show();
+				$('thead').hide();
+				$('tbody').hide();
+			}
+			else{
+				$('.cart-table').hide();
+				$('thead').show();
+				$('tbody').show();
+			}
+
+            }
+            function completionAlert(name, price){
+		$('.popup').html('<div class="ec-cart-float text-center"><a href="#ec-side-cart" style="width: 100%;" class="ec-header-btn ec-side-toggle"><div class="header-icon">'+
+                '<img src="assets/images/icons/check.gif" class="svg_img header_svg" alt="" />'+
+            '</div> <span> Added to your Cart<br /> <br /> <b>'+
+            price
+
+           +' </b>  <br /><br />'+
+            name
+           +' <br /><br /><button class="btn btn-success" type="submit">Proceed to Checkout</button> '+
+       '</span> </a> </div>');
+	}
+        }
 
      </script>                   
 
