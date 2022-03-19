@@ -4,7 +4,7 @@ include "controllers/firstcalls.php";
 echo headerInfo($page);
 ?>
 <!-- ekka Cart Start -->
-<?php include "includes/cart.php"; ?>
+<?php echo cart($page); ?>
 <!-- ekka Cart End -->
 
     <!-- Main Slider Start -->
@@ -136,15 +136,33 @@ echo headerInfo($page);
                                                         src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
                                                         alt="" /></a>
                                                 <div class="ec-pro-actions">
-                                                    <a href="#" class="ec-btn-group compare"
+                                                <a href="#" class="ec-btn-group compare"
                                                         title="Compare"><img src="assets/images/icons/compare.svg"
                                                             class="svg_img pro_svg" alt="" /></a>
-                                                    <button title="Add To Cart" class=" add-to-cart"><img
+                                                <div class="addCart shop_<?php echo $product_id; ?>">
+
+                                                <button  title="Add To Cart" class="add-to-cart"><img
                                                             src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                                            alt="" /> Add To Cart</button>
+                                                            alt="" /> Add To Cart           
+                                       
+                                </button>
+
+                                                    <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>
+                                                </div>
+                                                   
                                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                             src="assets/images/icons/wishlist.svg"
                                                             class="svg_img pro_svg" alt="" /></a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -259,15 +277,34 @@ echo headerInfo($page);
                                                         src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
                                                         alt="" /></a>
                                                 <div class="ec-pro-actions">
-                                                    <a href="#" class="ec-btn-group compare"
+                                                   
+                                                <a href="#" class="ec-btn-group compare"
                                                         title="Compare"><img src="assets/images/icons/compare.svg"
                                                             class="svg_img pro_svg" alt="" /></a>
-                                                    <button title="Add To Cart" class=" add-to-cart"><img
+                                                <div class="addCart shop_<?php echo $product_id; ?>">
+
+                                                <button  title="Add To Cart" class="add-to-cart"><img
                                                             src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                                            alt="" /> Add To Cart</button>
+                                                            alt="" /> Add To Cart           
+                                       
+                                </button>
+
+                                                    <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>
+                                                </div>
+                                                   
                                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                             src="assets/images/icons/wishlist.svg"
                                                             class="svg_img pro_svg" alt="" /></a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -381,15 +418,34 @@ echo headerInfo($page);
                                                         src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
                                                         alt="" /></a>
                                                 <div class="ec-pro-actions">
-                                                    <a href="#" class="ec-btn-group compare"
+                                                   
+                                                <a href="#" class="ec-btn-group compare"
                                                         title="Compare"><img src="assets/images/icons/compare.svg"
                                                             class="svg_img pro_svg" alt="" /></a>
-                                                    <button title="Add To Cart" class=" add-to-cart"><img
+                                                <div class="addCart shop_<?php echo $product_id; ?>">
+
+                                                <button  title="Add To Cart" class="add-to-cart"><img
                                                             src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                                            alt="" /> Add To Cart</button>
+                                                            alt="" /> Add To Cart           
+                                       
+                                </button>
+
+                                                    <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>
+                                                </div>
+                                                   
                                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                             src="assets/images/icons/wishlist.svg"
                                                             class="svg_img pro_svg" alt="" /></a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -501,15 +557,35 @@ echo headerInfo($page);
                                                         src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
                                                         alt="" /></a>
                                                 <div class="ec-pro-actions">
-                                                    <a href="#" class="ec-btn-group compare"
+
+                                                <a href="#" class="ec-btn-group compare"
                                                         title="Compare"><img src="assets/images/icons/compare.svg"
                                                             class="svg_img pro_svg" alt="" /></a>
-                                                    <button title="Add To Cart" class=" add-to-cart"><img
+                                                <div class="addCart shop_<?php echo $product_id; ?>">
+
+                                                <button  title="Add To Cart" class="add-to-cart"><img
                                                             src="assets/images/icons/cart.svg" class="svg_img pro_svg"
-                                                            alt="" /> Add To Cart</button>
+                                                            alt="" /> Add To Cart           
+                                       
+                                </button>
+
+                                                    <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>
+                                                </div>
+                                                   
                                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                             src="assets/images/icons/wishlist.svg"
                                                             class="svg_img pro_svg" alt="" /></a>
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -1018,13 +1094,34 @@ echo headerInfo($page);
                                     data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img
                                         src="assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img
-                                            src="assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class="add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To
-                                        Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
+                                  
+                                <a href="#" class="ec-btn-group compare"
+                                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                <div class="addCart shop_<?php echo $product_id; ?>">
+
+                                                <button  title="Add To Cart" class="add-to-cart"><img
+                                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                                            alt="" /> Add To Cart           
+                                       
+                                </button>
+
+                                                    <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>
+                                                </div>
+                                                   
+                                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                            src="assets/images/icons/wishlist.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+
                                 </div>
                             </div>
                         </div>
@@ -1094,13 +1191,34 @@ echo headerInfo($page);
                                     data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img
                                         src="assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img
-                                            src="assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class="add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To
-                                        Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
+                                   
+                                <a href="#" class="ec-btn-group compare"
+                                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                <div class="addCart shop_<?php echo $product_id; ?>">
+
+                                                <button  title="Add To Cart" class="add-to-cart"><img
+                                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                                            alt="" /> Add To Cart           
+                                       
+                                </button>
+
+                                                    <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>
+                                                </div>
+                                                   
+                                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                            src="assets/images/icons/wishlist.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+
                                 </div>
                             </div>
                         </div>
@@ -1162,13 +1280,34 @@ echo headerInfo($page);
                                     data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img
                                         src="assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img
-                                            src="assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class="add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To
-                                        Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
+                                   
+                                <a href="#" class="ec-btn-group compare"
+                                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                <div class="addCart shop_<?php echo $product_id; ?>">
+
+                                                <button  title="Add To Cart" class="add-to-cart"><img
+                                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                                            alt="" /> Add To Cart           
+                                       
+                                </button>
+
+                                                    <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>
+                                                </div>
+                                                   
+                                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                            src="assets/images/icons/wishlist.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+
                                 </div>
                             </div>
                         </div>
@@ -1242,13 +1381,34 @@ echo headerInfo($page);
                                     data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img
                                         src="assets/images/icons/quickview.svg" class="svg_img pro_svg" alt="" /></a>
                                 <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare" title="Compare"><img
-                                            src="assets/images/icons/compare.svg" class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class="add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg" alt="" /> Add To
-                                        Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg" class="svg_img pro_svg" alt="" /></a>
+                                  
+                                <a href="#" class="ec-btn-group compare"
+                                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+                                                <div class="addCart shop_<?php echo $product_id; ?>">
+
+                                                <button  title="Add To Cart" class="add-to-cart"><img
+                                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                                            alt="" /> Add To Cart           
+                                       
+                                </button>
+
+                                                    <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>
+                                                </div>
+                                                   
+                                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                            src="assets/images/icons/wishlist.svg"
+                                                            class="svg_img pro_svg" alt="" /></a>
+
                                 </div>
                             </div>
                         </div>
@@ -1303,221 +1463,14 @@ echo headerInfo($page);
     <!-- New Product end -->
 
     <!-- ec testmonial Start -->
-    <section class="section ec-test-section section-space-ptb-100 section-space-m">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="section-title mb-0">
-                        <h2 class="ec-bg-title">Testimonial</h2>
-                        <h2 class="ec-title">Client Review</h2>
-                        <p class="sub-title mb-3">What say client about us</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="ec-test-outer">
-                    <ul id="ec-testimonial-slider">
-                        <li class="ec-test-item">
-                            <img src="assets/images/testimonial/top-quotes.svg" class="svg_img test_svg top" alt="" />
-                            <div class="ec-test-inner">
-                                <div class="ec-test-img"><img alt="testimonial" title="testimonial"
-                                        src="assets/images/testimonial/1.jpg" /></div>
-                                <div class="ec-test-content">
-                                    <div class="ec-test-desc">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                        ever since the 1500s, when an unknown printer took a galley of type and
-                                        scrambled it to make a type specimen</div>
-                                    <div class="ec-test-name">John Doe</div>
-                                    <div class="ec-test-designation">General Manager</div>
-                                    <div class="ec-test-rating">
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="assets/images/testimonial/bottom-quotes.svg" class="svg_img test_svg bottom"
-                                alt="" />
-                        </li>
-                        <li class="ec-test-item ">
-                            <img src="assets/images/testimonial/top-quotes.svg" class="svg_img test_svg top" alt="" />
-                            <div class="ec-test-inner">
-                                <div class="ec-test-img"><img alt="testimonial" title="testimonial"
-                                        src="assets/images/testimonial/2.jpg" /></div>
-                                <div class="ec-test-content">
-                                    <div class="ec-test-desc">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                        ever since the 1500s, when an unknown printer took a galley of type and
-                                        scrambled it to make a type specimen</div>
-                                    <div class="ec-test-name">John Doe</div>
-                                    <div class="ec-test-designation">General Manager</div>
-                                    <div class="ec-test-rating">
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="assets/images/testimonial/bottom-quotes.svg" class="svg_img test_svg bottom"
-                                alt="" />
-                        </li>
-                        <li class="ec-test-item">
-                            <img src="assets/images/testimonial/top-quotes.svg" class="svg_img test_svg top" alt="" />
-                            <div class="ec-test-inner">
-                                <div class="ec-test-img"><img alt="testimonial" title="testimonial"
-                                        src="assets/images/testimonial/3.jpg" /></div>
-                                <div class="ec-test-content">
-                                    <div class="ec-test-desc">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                        ever since the 1500s, when an unknown printer took a galley of type and
-                                        scrambled it to make a type specimen</div>
-                                    <div class="ec-test-name">John Doe</div>
-                                    <div class="ec-test-designation">General Manager</div>
-                                    <div class="ec-test-rating">
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                        <i class="ecicon eci-star fill"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="assets/images/testimonial/bottom-quotes.svg" class="svg_img test_svg bottom"
-                                alt="" />
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php include "partials/testimonial.php"; ?>
     <!-- ec testmonial end -->
 
     <!-- Ec Brand Section Start -->
-    <section class="section ec-brand-area section-space-p">
-        <h2 class="d-none">Brand</h2>
-        <div class="container">
-            <div class="row">
-                <div class="ec-brand-outer">
-                    <ul id="ec-brand-slider">
-                        <li class="ec-brand-item"  data-animation="zoomIn">
-                            <div class="ec-brand-img"><a href="#"><img alt="brand" title="brand"
-                                        src="assets/images/brand-image/1.png" /></a></div>
-                        </li>
-                        <li class="ec-brand-item"  data-animation="zoomIn">
-                            <div class="ec-brand-img"><a href="#"><img alt="brand" title="brand"
-                                        src="assets/images/brand-image/2.png" /></a></div>
-                        </li>
-                        <li class="ec-brand-item"  data-animation="zoomIn">
-                            <div class="ec-brand-img"><a href="#"><img alt="brand" title="brand"
-                                        src="assets/images/brand-image/3.png" /></a></div>
-                        </li>
-                        <li class="ec-brand-item"  data-animation="zoomIn">
-                            <div class="ec-brand-img"><a href="#"><img alt="brand" title="brand"
-                                        src="assets/images/brand-image/4.png" /></a></div>
-                        </li>
-                        <li class="ec-brand-item"  data-animation="zoomIn">
-                            <div class="ec-brand-img"><a href="#"><img alt="brand" title="brand"
-                                        src="assets/images/brand-image/5.png" /></a></div>
-                        </li>
-                        <li class="ec-brand-item"  data-animation="zoomIn">
-                            <div class="ec-brand-img"><a href="#"><img alt="brand" title="brand"
-                                        src="assets/images/brand-image/6.png" /></a></div>
-                        </li>
-                        <li class="ec-brand-item"  data-animation="zoomIn">
-                            <div class="ec-brand-img"><a href="#"><img alt="brand" title="brand"
-                                        src="assets/images/brand-image/7.png" /></a></div>
-                        </li>
-                        <li class="ec-brand-item"  data-animation="zoomIn">
-                            <div class="ec-brand-img"><a href="#"><img alt="brand" title="brand"
-                                        src="assets/images/brand-image/8.png" /></a></div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php include "partials/brand.php"; ?>                                
     <!-- Ec Brand Section End -->
 
-    <!-- Ec Instagram Start -->
-    <section class="section ec-instagram-section module section-space-p">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="section-title">
-                        <h2 class="ec-bg-title">Instagram Feed</h2>
-                        <h2 class="ec-title">Instagram Feed</h2>
-                        <p class="sub-title">Share your store with us</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ec-insta-wrapper">
-            <div class="ec-insta-outer">
-                <div class="container" data-animation="fadeIn">
-                    <div class="insta-auto">
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="assets/images/instragram-image/1.jpg"
-                                        alt="insta"></a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="assets/images/instragram-image/2.jpg"
-                                        alt="insta"></a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="assets/images/instragram-image/3.jpg"
-                                        alt="insta"></a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="assets/images/instragram-image/4.jpg"
-                                        alt="insta"></a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="assets/images/instragram-image/5.jpg"
-                                        alt="insta"></a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="assets/images/instragram-image/6.jpg"
-                                        alt="insta"></a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                        <!-- instagram item -->
-                        <div class="ec-insta-item">
-                            <div class="ec-insta-inner">
-                                <a href="#" target="_blank"><img src="assets/images/instragram-image/7.jpg"
-                                        alt="insta"></a>
-                            </div>
-                        </div>
-                        <!-- instagram item -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Ec Instagram End -->
+    <?php include "partials/instagram.php"; ?>                                
 
     <?php include "includes/footer.php"; ?>
 
@@ -1643,8 +1596,21 @@ echo headerInfo($page);
                                         <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
                                     </div>
                                     <div class="ec-quickview-cart ">
+                                    <div id="button" class="addCart shop_<?php echo $product_id; ?>">
                                         <button class="btn btn-primary"><img src="assets/images/icons/cart.svg"
                                                 class="svg_img pro_svg" alt="" /> Add To Cart</button>
+
+                                                <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>  
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -1692,26 +1658,8 @@ echo headerInfo($page);
     </div>
     <!-- Footer navigation panel for responsive display end -->
 
-    <!-- Recent Purchase Popup  -->
-    <div class="recent-purchase">
-        <img src="assets/images/product-image/1.jpg" alt="payment image">
-        <div class="detail">
-            <p>Someone in new just bought</p>
-            <h6>stylish baby shoes</h6>
-            <p>10 Minutes ago</p>
-        </div>
-        <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
-    </div>
-    <!-- Recent Purchase Popup end -->
-
     <!-- Cart Floating Button -->
-    <div class="ec-cart-float">
-        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-            <div class="header-icon"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="cart" />
-            </div>
-            <span class="ec-cart-count cart-count-lable">3</span>
-        </a>
-    </div>
+    <div class="ec-cart-float  text-center"> </div>
     <!-- Cart Floating Button end -->
 
     <!-- Whatsapp -->
@@ -1859,6 +1807,110 @@ echo headerInfo($page);
     <!-- Main Js -->
     <script src="assets/js/vendor/index.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+
+$(function() {
+   $(".addCart").on("click", function(e) {
+       
+        // getting target element
+        var elem = $(this);
+        var className = elem.attr('class');
+        var idName = elem.attr('id');
+        var strippedName = className.replace("addCart ","");
+        console.log(strippedName);
+        
+        // getting the list of variables
+        var product_type = $('.'+strippedName+'>input[name="product_type"]').val()
+        var product_id = $('.'+strippedName+'>input[name="product_id"]').val()
+        var product_name = $('.'+strippedName+'>input[name="product_name"]').val()
+        var product_price = $('.'+strippedName+'>input[name="product_price"]').val()
+        var product_url = $('.'+strippedName+'>input[name="product_url"]').val()
+
+
+        if(product_url == "" || product_price == "" || product_name == "" || product_id == "" || product_type == ""
+        || product_name == null || product_id == null || product_price == null || product_id == null ) {
+            console.log("Please fill all these");
+        }else {
+            // passing the request via ajax
+            $.post("/<?php echo custom_site_base(); ?>functions/cart_add.php", {
+              
+                product_type: product_type,
+                product_id: product_id,
+                product_name: product_name,
+                product_price: product_price,
+                product_url: product_url
+
+            }, 
+            
+            function(data, status) {
+              if(status == "success") {
+
+                if(idName == "button") {
+                        alert(`An Item has been added to your cart 👍. \nProduct Name:${product_name} \nProduct Price: ${product_price} \n\n ✔ Thanks`)
+                  }else {
+                     reloadCart(data, product_name, product_price)
+                  }
+
+              } 
+            });
+            
+        }
+        
+   });
+});
+
+function reloadCart(data, name, price) {
+    if(data != 0) {
+        data = JSON.parse(data);
+        var deliveryFee = 150;
+        var cartContent = '';
+        var cartSubtotal = 0;
+        var cartTotal = 0;
+        var cartQty = 0;
+        $.each(data, function(i, value) {
+            // alert(i+": "+value.id);
+            cartQty = cartQty + parseInt(value.count);
+            cartSubtotal = cartSubtotal + parseFloat(value.price * value.count);
+
+            cartContent = cartContent + '<li><a href=\"\" class=\"sidekka_pro_img\"><img'+
+                     '   src=\"'+value.url+'\" alt=\"product\"></a>'+
+              '  <div class=\"ec-pro-content\">'+
+                '    <a href=\"\" class=\"cart_pro_title\">'+value.name+'</a>'+
+                   ' <span class=\"cart-price\"><span>'+parseFloat(value.price).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')+'</span> x <span class=\"count\">'+value.count+'</span></span>'+
+                  '  <div class=\"qty-plus-minus\"> <input class=\"qty-input\" type=\"text\" name=\"ec_qtybtn\" value=\"'+value.count+'\" /></div>'
+                   ' <a href=\"javascript:void(0)\" class=\"remove\">×</a>'
+               ' </div></li>';
+        });
+
+    cartTotal = cartSubtotal+parseFloat(deliveryFee);
+    $('.cart_subtotal').text('₦'+parseFloat(cartSubtotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+    $('.cart_dfee').text('₦'+parseFloat(deliveryFee).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+    $('.cart_total').text('₦'+parseFloat(cartTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+    $('.eccart-pro-items').html(cartContent);
+    $('.cart_summary .count').text(parseInt(cartQty).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+    $('.cart-count-lable').text(parseFloat(cartQty));
+    //alert(cartQty);
+    if(cartQty > 1){
+        $('.cart_summary .count_text').text('items');
+    }
+    completionAlert(name, price);
+}
+
+    function completionAlert(name, price){
+$('.ec-cart-float').html('<a href="#ec-side-cart" style="width: 100%;" class="ec-header-btn ec-side-toggle"><div class="header-icon">'+
+        '<img src="assets/images/icons/check.gif" class="svg_img header_svg" alt="" />'+
+    '</div> <span> Added to your Cart<br /> <br /> <b>#'+
+    parseFloat(price).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
+
+   +' </b>  <br /><br />'+
+    name
+   +' <br /><br /><button class="btn btn-success" type="submit">Proceed to Checkout</button> '+
+'</span> </a>');
+}
+}
+
+</script>                   
+
 </body>
 
 <!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Nov 2021 05:42:45 GMT -->
