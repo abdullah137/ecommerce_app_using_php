@@ -1,10 +1,10 @@
 <?php
 $page = "contact";
-include "controllers/firstcalls.php";
+include "controllers/firstcalls.php"; 
 echo headerInfo($page);
 ?>
     <!-- ekka Cart Start -->
-    <?php include "includes/cart.php"; ?>
+    <?php echo cart($page); ?>
     <!-- ekka Cart End -->
 
     <!-- Ec breadcrumb start -->

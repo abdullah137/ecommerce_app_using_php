@@ -1,6 +1,7 @@
 <?php
-$page = "about";
-include "includes/header.php"; 
+$page = "home";
+include "controllers/firstcalls.php"; 
+echo headerInfo($page);
 ?>
 
     <!-- ekka Cart Start -->
