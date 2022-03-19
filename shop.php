@@ -4,7 +4,7 @@ include "controllers/firstcalls.php";
 echo headerInfo($page);
 ?>
 <!-- ekka Cart Start -->
-<?php include "includes/cart.php"; ?>
+<?php echo cart($page); ?>
 <!-- ekka Cart End -->
 
     <!-- Ec breadcrumb start -->
@@ -399,144 +399,6 @@ echo headerInfo($page);
     </section>
     <!-- End Shop page -->
 
-    <!-- Footer Start -->
-    <footer class="ec-footer section-space-mt">
-        <div class="footer-container">
-            <div class="footer-offer">
-                <div class="container">
-                    <div class="row">
-                        <div class="text-center footer-off-msg">
-                            <span>Win a contest! Get this limited-editon</span><a href="#" target="_blank">View
-                                Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-top section-space-footer-p">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-lg-3 ec-footer-contact">
-                            <div class="ec-footer-widget">
-                                <div class="ec-footer-logo"><a href="#"><img src="assets/images/logo/footer-logo.png"
-                                            alt=""><img class="dark-footer-logo" src="assets/images/logo/dark-logo.png"
-                                            alt="Site Logo" style="display: none;" /></a></div>
-                                <h4 class="ec-footer-heading">Contact us</h4>
-                                <div class="ec-footer-links">
-                                    <ul class="align-items-center">
-                                        <li class="ec-footer-link">71 Pilgrim Avenue Chevy Chase, east california.</li>
-                                        <li class="ec-footer-link"><span>Call Us:</span><a href="tel:+440123456789">+44
-                                                0123 456 789</a></li>
-                                        <li class="ec-footer-link"><span>Email:</span><a href="https://loopinfosol.in/cdn-cgi/l/email-protection#0b6e736a667b676e4b6e68266e666a626725686466"><span class="__cf_email__" data-cfemail="5b703e233a362b373e1b3e38763e363a323775383436">[email&#160;protected]</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-lg-2 ec-footer-info">
-                            <div class="ec-footer-widget">
-                                <h4 class="ec-footer-heading">Information</h4>
-                                <div class="ec-footer-links">
-                                    <ul class="align-items-center">
-                                        <li class="ec-footer-link"><a href="about-us.html">About us</a></li>
-                                        <li class="ec-footer-link"><a href="faq.html">FAQ</a></li>
-                                        <li class="ec-footer-link"><a href="#">Delivery Information</a></li>
-                                        <li class="ec-footer-link"><a href="contact-us.html">Contact us</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-lg-2 ec-footer-account">
-                            <div class="ec-footer-widget">
-                                <h4 class="ec-footer-heading">Account</h4>
-                                <div class="ec-footer-links">
-                                    <ul class="align-items-center">
-                                        <li class="ec-footer-link"><a href="#">My Account</a></li>
-                                        <li class="ec-footer-link"><a href="track-order.html">Order History</a></li>
-                                        <li class="ec-footer-link"><a href="#">Wish List</a></li>
-                                        <li class="ec-footer-link"><a href="#">Specials</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-lg-2 ec-footer-service">
-                            <div class="ec-footer-widget">
-                                <h4 class="ec-footer-heading">Services</h4>
-                                <div class="ec-footer-links">
-                                    <ul class="align-items-center">
-                                        <li class="ec-footer-link"><a href="#">Discount Returns</a></li>
-                                        <li class="ec-footer-link"><a href="#">Policy & policy </a></li>
-                                        <li class="ec-footer-link"><a href="#">Customer Service</a></li>
-                                        <li class="ec-footer-link"><a href="terms-condition.html">Term & condition</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-lg-3 ec-footer-news">
-                            <div class="ec-footer-widget">
-                                <h4 class="ec-footer-heading">Newsletter</h4>
-                                <div class="ec-footer-links">
-                                    <ul class="align-items-center">
-                                        <li class="ec-footer-link">Get instant updates about our new products and
-                                            special promos!</li>
-                                    </ul>
-                                    <div class="ec-subscribe-form">
-                                        <form id="ec-newsletter-form" name="ec-newsletter-form" method="post"
-                                            action="#">
-                                            <div id="ec_news_signup" class="ec-form">
-                                                <input class="ec-email" type="email" required=""
-                                                    placeholder="Enter your email here..." name="ec-email" value="" />
-                                                <button id="ec-news-btn" class="button btn-primary" type="submit"
-                                                    name="subscribe" value=""><i class="ecicon eci-paper-plane-o"
-                                                        aria-hidden="true"></i></button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <!-- Footer social Start -->
-                        <div class="col text-left footer-bottom-left">
-                            <div class="footer-bottom-social">
-                                <span class="social-text text-upper">Follow us on:</span>
-                                <ul class="mb-0">
-                                    <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Footer social End -->
-                        <!-- Footer Copyright Start -->
-                        <div class="col text-center footer-copy">
-                            <div class="footer-bottom-copy ">
-                                <div class="ec-copy">Copyright © 2021-2022 <a class="site-name text-upper"
-                                        href="#">ekka<span>.</span></a>. All Rights Reserved</div>
-                            </div>
-                        </div>
-                        <!-- Footer Copyright End -->
-                        <!-- Footer payment -->
-                        <div class="col footer-bottom-right">
-                            <div class="footer-bottom-payment d-flex justify-content-end">
-                                <div class="payment-link">
-                                    <img src="assets/images/icons/payment.png" alt="">
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- Footer payment -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Area End -->
 
 
     <?PHP
@@ -665,9 +527,22 @@ echo headerInfo($page);
                                     <div class="qty-plus-minus">
                                         <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
                                     </div>
-                                    <div class="ec-quickview-cart ">
+                                    <div class="ec-quickview-cart">
+                                        <div  id="button" class="addCart shop_<?php echo $product_id; ?>">
                                         <button class="btn btn-primary"><img src="assets/images/icons/cart.svg"
                                                 class="svg_img pro_svg" alt="" /> Add To Cart</button>
+
+                                                <div class="shop_<?php echo $product_id; ?>">
+                                                        
+                                                        <input type="hidden" name="product_type" value="1" />
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+                                                        <input type="hidden" name="product_name" value="<?php echo $product_name; ?>" />
+                                                        <input type="hidden" name="product_price" value="<?php echo $product_price; ?>" />
+                                                        <input type="hidden" name="product_url" value="<?php echo $imgurl_1; ?>" />
+                                                                
+
+                                                    </div>    
+                                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -715,133 +590,11 @@ echo headerInfo($page);
     </div>
     <!-- Footer navigation panel for responsive display end -->
 
-        <div class="popup"></div>
+        
+     
+      <div class="ec-cart-float text-center"></div>
 
- 
 
-    <!-- Whatsapp -->
-    <div class="ec-style ec-right-bottom">
-        <!-- Start Floating Panel Container -->
-        <div class="ec-panel">
-            <!-- Panel Header -->
-            <div class="ec-header">
-                <strong>Need Help?</strong>
-                <p>Chat with us on WhatsApp</p>
-            </div>
-            <!-- Panel Content -->
-            <div class="ec-body">
-                <ul>
-                    <!-- Start Single Contact List -->
-                    <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
-                            <div class="d-flex bd-highlight">
-                                <!-- Profile Picture -->
-                                <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_01.jpg" class="ec-user-img"
-                                        alt="Profile image">
-                                    <span class="ec-status-icon"></span>
-                                </div>
-                                <!-- Display Name & Last Seen -->
-                                <div class="ec-user-info">
-                                    <span>Sahar Darya</span>
-                                    <p>Sahar left 7 mins ago</p>
-                                </div>
-                                <!-- Chat iCon -->
-                                <div class="ec-chat-icon">
-                                    <i class="fa fa-whatsapp"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!--/ End Single Contact List -->
-                    <!-- Start Single Contact List -->
-                    <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
-                            <div class="d-flex bd-highlight">
-                                <!-- Profile Picture -->
-                                <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_02.jpg" class="ec-user-img"
-                                        alt="Profile image">
-                                    <span class="ec-status-icon ec-online"></span>
-                                </div>
-                                <!-- Display Name & Last Seen -->
-                                <div class="ec-user-info">
-                                    <span>Yolduz Rafi</span>
-                                    <p>Yolduz is online</p>
-                                </div>
-                                <!-- Chat iCon -->
-                                <div class="ec-chat-icon">
-                                    <i class="fa fa-whatsapp"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!--/ End Single Contact List -->
-                    <!-- Start Single Contact List -->
-                    <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
-                            <div class="d-flex bd-highlight">
-                                <!-- Profile Picture -->
-                                <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_03.jpg" class="ec-user-img"
-                                        alt="Profile image">
-                                    <span class="ec-status-icon ec-offline"></span>
-                                </div>
-                                <!-- Display Name & Last Seen -->
-                                <div class="ec-user-info">
-                                    <span>Nargis Hawa</span>
-                                    <p>Nargis left 30 mins ago</p>
-                                </div>
-                                <!-- Chat iCon -->
-                                <div class="ec-chat-icon">
-                                    <i class="fa fa-whatsapp"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!--/ End Single Contact List -->
-                    <!-- Start Single Contact List -->
-                    <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
-                            <div class="d-flex bd-highlight">
-                                <!-- Profile Picture -->
-                                <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_04.jpg" class="ec-user-img"
-                                        alt="Profile image">
-                                    <span class="ec-status-icon ec-offline"></span>
-                                </div>
-                                <!-- Display Name & Last Seen -->
-                                <div class="ec-user-info">
-                                    <span>Khadija Mehr</span>
-                                    <p>Khadija left 50 mins ago</p>
-                                </div>
-                                <!-- Chat iCon -->
-                                <div class="ec-chat-icon">
-                                    <i class="fa fa-whatsapp"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!--/ End Single Contact List -->
-                </ul>
-            </div>
-        </div>
-        <!--/ End Floating Panel Container -->
-        <!-- Start Right Floating Button-->
-        <div class="ec-right-bottom">
-            <div class="ec-box">
-                <div class="ec-button rotateBackward">
-                    <img class="whatsapp" src="assets/images/common/whatsapp.png" alt="whatsapp icon" />
-                </div>
-            </div>
-        </div>
-        <!--/ End Right Floating Button-->
-    </div>
-    <!-- Whatsapp end -->
 
 
     <!-- Vendor JS -->
@@ -872,13 +625,17 @@ echo headerInfo($page);
                 // var product_type = clickedAnchor.parents('.pro-gl-content').find('input[name="product_type"]').val();
                 var elem = $(this);
                 var className = elem.attr('class');
+                var idName = elem.attr('id');
                 var strippedName = className.replace("addCart ","");
+                console.log(strippedName);
+                console.log(idName)
                 
                 var product_type = $('.'+strippedName+'>input[name="product_type"]').val()
                 var product_id = $('.'+strippedName+'>input[name="product_id"]').val()
                 var product_name = $('.'+strippedName+'>input[name="product_name"]').val()
                 var product_price = $('.'+strippedName+'>input[name="product_price"]').val()
                 var product_url = $('.'+strippedName+'>input[name="product_url"]').val()
+
 
                 if(product_url == "" || product_price == "" || product_name == "" || product_id == "" || product_type == ""
                 || product_name == null || product_id == null || product_price == null || product_id == null ) {
@@ -897,8 +654,11 @@ echo headerInfo($page);
                     
                     function(data, status) {
                       if(status == "success") {
-                          console.log("It has landed here oo");
-                          reloadCart(data, product_name, product_price)
+                          if(idName == "button") {
+                                alert(`An Item has been added to your cart 👍. \nProduct Name:${product_name} \nProduct Price: ${product_price} \n\n ✔ Thanks`)
+                          }else {
+                             reloadCart(data, product_name, product_price)
+                          }
                       } 
                     });
                     
@@ -920,49 +680,40 @@ echo headerInfo($page);
                     cartQty = cartQty + parseInt(value.count);
                     cartSubtotal = cartSubtotal + parseFloat(value.price * value.count);
 
-                    cartContent = cartContent + '<li> <a href="" class="sidekka_pro_img"><img'+
-                             '   src=\"'+value.url+'\" alt="product"></a>'+
-                      '  <div class="ec-pro-content">'+
-                        '    <a href="" class="cart_pro_title">'+value.name+'</a>'+
-                           ' <span class="cart-price"><span>'+parseFloat(value.price).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')+'</span> x <span class=\"count\">'+parseInt(cartQty).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')+'</span></span>'+
-                          '  <div class="qty-plus-minus"> <input class=\"qty-input\" type=\"text\" name=\"ec_qtybtn\" value=\"1\" /></div>'
-                           ' <a href="javascript:void(0)" class="remove">×</a>'
+                    cartContent = cartContent + '<li><a href=\"\" class=\"sidekka_pro_img\"><img'+
+                             '   src=\"'+value.url+'\" alt=\"product\"></a>'+
+                      '  <div class=\"ec-pro-content\">'+
+                        '    <a href=\"\" class=\"cart_pro_title\">'+value.name+'</a>'+
+                           ' <span class=\"cart-price\"><span>'+parseFloat(value.price).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')+'</span> x <span class=\"count\">'+value.count+'</span></span>'+
+                          '  <div class=\"qty-plus-minus\"> <input class=\"qty-input\" type=\"text\" name=\"ec_qtybtn\" value=\"'+value.count+'\" /></div>'
+                           ' <a href=\"javascript:void(0)\" class=\"remove\">×</a>'
                        ' </div></li>';
                 });
 
-                cartTotal = cartSubtotal+parseFloat(deliveryFee);
+            cartTotal = cartSubtotal+parseFloat(deliveryFee);
 			$('.cart_subtotal').text('₦'+parseFloat(cartSubtotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
 			$('.cart_dfee').text('₦'+parseFloat(deliveryFee).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
 			$('.cart_total').text('₦'+parseFloat(cartTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
 			$('.eccart-pro-items').html(cartContent);
 			$('.cart_summary .count').text(parseInt(cartQty).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+            $('.cart-count-lable').text(parseFloat(cartQty));
 			//alert(cartQty);
 			if(cartQty > 1){
 				$('.cart_summary .count_text').text('items');
 			}
 			completionAlert(name, price);
-			if(cartQty == 0){
-				$('.cart-table').show();
-				$('thead').hide();
-				$('tbody').hide();
-			}
-			else{
-				$('.cart-table').hide();
-				$('thead').show();
-				$('tbody').show();
-			}
+        }
 
-            }
             function completionAlert(name, price){
-		$('.popup').html('<div class="ec-cart-float text-center"><a href="#ec-side-cart" style="width: 100%;" class="ec-header-btn ec-side-toggle"><div class="header-icon">'+
+		$('.ec-cart-float').html('<a href="#ec-side-cart" style="width: 100%;" class="ec-header-btn ec-side-toggle"><div class="header-icon">'+
                 '<img src="assets/images/icons/check.gif" class="svg_img header_svg" alt="" />'+
-            '</div> <span> Added to your Cart<br /> <br /> <b>'+
-            price
+            '</div> <span> Added to your Cart<br /> <br /> <b>#'+
+            parseFloat(price).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
 
            +' </b>  <br /><br />'+
             name
            +' <br /><br /><button class="btn btn-success" type="submit">Proceed to Checkout</button> '+
-       '</span> </a> </div>');
+       '</span> </a>');
 	}
         }
 

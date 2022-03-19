@@ -19,28 +19,69 @@ if($user == 0) {
 
 if(isset($_POST['update_button'])){
 	$i = 0;
-	if($_POST['f_name'] == "" || $_POST['f_name'] == NULL || $_POST['s_name'] == "" || $_POST['s_name'] == NULL || $_POST['s_name'] == "" || $_POST['s_name'] == NULL || $_POST['email'] == "" || $_POST['email'] == NULL || $_POST['dob_day'] == "" || $_POST['dob_day'] == NULL || $_POST['dob_month'] == "" || $_POST['dob_month'] == NULL || $_POST['dob_year'] == "" || $_POST['dob_year'] == NULL || $_POST['gender'] == "" || $_POST['gender'] == NULL || $_POST['phone'] == "" || $_POST['phone'] == NULL){
+    $err = "";
+	if($_POST['f_name'] == "" || $_POST['f_name'] == NULL || $_POST['s_name'] == "" || $_POST['s_name'] == NULL || $_POST['s_name'] == "" || $_POST['s_name'] == NULL || $_POST['email'] == "" || $_POST['email'] == NULL || $_POST['address'] == "" || $_POST['phone'] == "" || $_POST['phone'] == NULL){
 		if($_POST['f_name'] == "" || $_POST['f_name'] == NULL){ $err = "First name";$i++;}
 		if($_POST['s_name'] == "" || $_POST['s_name'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Last name";$i++;}
 		if($_POST['email'] == "" || $_POST['email'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Email";$i++;}
         if($_POST['address'] == "" || $_POST['address'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Address";$i++;}
 		if($_POST['phone'] == "" || $_POST['phone'] == NULL){ if($i > 0){ $err .= ", ";} $err .= "Phone";$i++;}
-		$mmsg = "<span class=\"alert_this_message\">Please complete the following fields:<br><i>".$err."</i>.</span>";
+        $mmsg = '
+        <div class="recent-purchase">
+        <img src="assets/images/product-image/1.jpg" alt="payment image">
+        <div class="detail">
+            <p>Important Message</p>
+            <p>Please complete the following fields:<br><i>"'.$err.'"</i>. </p>
+        </div>
+        <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
+    </div>
+        ';
 	}
 	else{
 		
-		$mmsg = updateAccount($_POST['f_name'], $_POST['s_name'], $_POST['email'], $dob, $_POST['gender'], $_POST['phone'], $user['u_id']);
+		$mmsg = updateAccount($_POST['f_name'], $_POST['s_name'], $_POST['email'], $_POST['phone'], $_POST['address'], $user['u_id']);
 		$user = getUserDetails();
 	}
 }
 else{
-	$mmsg = "Edit your account";
+	$mmsg = "";
 }
 
+
+// Change Password
+if(isset($_POST['update_pass_button'])) {
+    if($_POST['o_pass'] == "" || $_POST['o_pass'] == NULL || $_POST['new_pass'] == "" || $_POST['new_pass'] == NULL || $_POST['c_pass'] == "" || $_POST['c_pass'] == NULL){
+		$mmsg = '
+        <div class="recent-purchase">
+        <img src="assets/images/product-image/1.jpg" alt="payment image">
+        <div class="detail">
+            <p>Important Message</p>
+            <p>Please fill all fields </p>
+        </div>
+        <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
+    </div>
+        ';
+	}
+	else if($_POST['new_pass'] != $_POST['c_pass']){
+		$mmsg   = '
+        <div class="recent-purchase">
+        <img src="assets/images/product-image/1.jpg" alt="payment image">
+        <div class="detail">
+            <p>Important Message</p>
+            <p> Password do not Match </p>
+        </div>
+        <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
+    </div>
+        ';
+	}
+	else{
+		$mmsg = updatePassword($_POST['o_pass'], $_POST['new_pass']);
+	} 
+}
 echo headerInfo($page);
 ?>
     <!-- ekka Cart Start -->
-    <?php include "includes/cart.php"; ?>
+    <?php echo cart($page); ?>
     <!-- ekka Cart End -->
 
     <!-- Ec breadcrumb start -->
@@ -128,6 +169,8 @@ echo headerInfo($page);
                                                         <li><strong>Email: </strong><a href="https://loopinfosol.in/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f4c4a4f4f504d4b0e7f5a475e4f52535a115c5052"><?php echo $email; ?></a></li>
                                                         <li><strong>Password : </strong><a href="https://loopinfosol.in/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81f2f4f1f1eef3f5b3c1e4f9e0f1ecede4afe2eeec">[password&#160;protected]</a></li>
                                                     </ul>
+                                                    <br />
+                                                   <b> Wanna Change Password </b> <a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_pass_modal">Click Here </a> 
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-sm-12">
@@ -150,8 +193,8 @@ echo headerInfo($page);
                                             </div>
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="ec-vendor-detail-block ec-vendor-block-address">
-                                                    <h6>Shipping Address<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><img src="assets/images/icons/edit.svg"
-                                                        class="svg_img pro_svg" alt="edit" />Edit (Only)</a></h6>
+                                                    <h6>Shipping Address<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#add_address_modal"><img src="assets/images/icons/edit.svg"
+                                                        class="svg_img pro_svg" alt="edit" />Add Address</a></h6>
                                                     <ul>
                                                         <li><strong>Office : </strong><?php echo ""; ?></li>
                                                     </ul>
@@ -234,11 +277,141 @@ echo headerInfo($page);
                                     </div>
                                     <div class="col-md-6 space-t-15">
                                         <label class="form-label">Phone number </label>
-                                        <input type="text" value="<?php  echo $phone; ?>" class="form-control">
+                                        <input type="text" name="phone" value="<?php  echo $phone; ?>" class="form-control">
                                     </div>
 
                                     <div class="col-md-12 space-t-15">
                                         <button type="submit" name="update_button" class="btn btn-primary">Update</button>
+                                        <a href="#" class="btn btn-lg btn-secondary qty_close" data-bs-dismiss="modal"
+                                            aria-label="Close">Close</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal end -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="add_address_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="ec-vendor-block-img space-bottom-30">
+                        <div class="ec-vendor-block-bg cover-upload">
+                                <div class="thumb-upload">
+                                    <div class="thumb-edit">
+                                        <input type='file' id="thumbUpload01" class="ec-image-upload"
+                                            accept=".png, .jpg, .jpeg" />
+                                        <label><img src="assets/images/icons/edit.svg"
+                                                class="svg_img header_svg" alt="edit" /></label>
+                                    </div>
+                                    <div class="thumb-preview ec-preview">
+                                        <div class="image-thumb-preview">
+                                            <img class="image-thumb-preview ec-image-preview v-img"
+                                                src="assets/images/banner/8.jpg" alt="edit" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ec-vendor-block-detail">
+                                <div class="thumb-upload">
+                                    <div class="thumb-edit">
+                                        <input type='file' id="thumbUpload02" class="ec-image-upload"
+                                            accept=".png, .jpg, .jpeg" />
+                                        <label><img src="assets/images/icons/edit.svg"
+                                                class="svg_img header_svg" alt="edit" /></label>
+                                    </div>
+                                    <div class="thumb-preview ec-preview">
+                                        <div class="image-thumb-preview">
+                                            <img class="image-thumb-preview ec-image-preview v-img"
+                                                src="assets/images/user/1.jpg" alt="edit" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ec-vendor-upload-detail">
+                                <form method="POST" class="row g-3">
+                                    <div class="col-md-12 space-t-15">
+                                        <label class="form-label">Address</label>
+                                        <textarea rows="6" class="form-control" name="add_address"></textarea>
+                                    </div>
+                                    <div class="col-md-12 space-t-15">
+                                        <button type="submit" name="address_button" class="btn btn-primary">Add Address</button>
+                                        <a href="#" class="btn btn-lg btn-secondary qty_close" data-bs-dismiss="modal"
+                                            aria-label="Close">Close</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal end -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="edit_pass_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="ec-vendor-block-img space-bottom-30">
+                        <div class="ec-vendor-block-bg cover-upload">
+                                <div class="thumb-upload">
+                                    <div class="thumb-edit">
+                                        <input type='file' id="thumbUpload01" class="ec-image-upload"
+                                            accept=".png, .jpg, .jpeg" />
+                                        <label><img src="assets/images/icons/edit.svg"
+                                                class="svg_img header_svg" alt="edit" /></label>
+                                    </div>
+                                    <div class="thumb-preview ec-preview">
+                                        <div class="image-thumb-preview">
+                                            <img class="image-thumb-preview ec-image-preview v-img"
+                                                src="assets/images/banner/8.jpg" alt="edit" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ec-vendor-block-detail">
+                                <div class="thumb-upload">
+                                    <div class="thumb-edit">
+                                        <input type='file' id="thumbUpload02" class="ec-image-upload"
+                                            accept=".png, .jpg, .jpeg" />
+                                        <label><img src="assets/images/icons/edit.svg"
+                                                class="svg_img header_svg" alt="edit" /></label>
+                                    </div>
+                                    <div class="thumb-preview ec-preview">
+                                        <div class="image-thumb-preview">
+                                            <img class="image-thumb-preview ec-image-preview v-img"
+                                                src="assets/images/user/1.jpg" alt="edit" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ec-vendor-upload-detail">
+                                <form method="POST" class="row g-3">
+                                <div class="col-md-12 space-t-15">
+                                        <label class="form-label">Current Password</label>
+                                        <input type="password" placeholder="Enter Your Current Password" name="o_pass" class="form-control">
+                                    </div>
+                                    <div class="col-md-12 space-t-15">
+                                        <label class="form-label">New Password</label>
+                                        <input type="password" placeholder="Enter Your New Password" name="new_pass" class="form-control">
+                                    </div>
+                                    <div class="col-md-12 space-t-15">
+                                        <label class="form-label">Confirm Password</label>
+                                        <input type="password"  placeholder="Please Confirm Your New Password"  name="c_pass" class="form-control">
+                                    </div>
+                                    <br /><br />
+                                    <div class="col-md-12 space-t-15">
+                                        <button type="submit" name="update_pass_button" class="btn btn-success">Update Password</button>
                                         <a href="#" class="btn btn-lg btn-secondary qty_close" data-bs-dismiss="modal"
                                             aria-label="Close">Close</a>
                                     </div>
@@ -284,15 +457,9 @@ echo headerInfo($page);
     <!-- Footer navigation panel for responsive display end -->
 
     <!-- Recent Purchase Popup  -->
-    <div class="recent-purchase">
-        <img src="assets/images/product-image/1.jpg" alt="payment image">
-        <div class="detail">
-            <p>Someone in new just bought</p>
-            <h6>stylish baby shoes</h6>
-            <p>10 Minutes ago</p>
-        </div>
-        <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
-    </div>
+    <?php
+        echo $mmsg;
+    ?>
     <!-- Recent Purchase Popup end -->
 
     <!-- Cart Floating Button -->
@@ -428,72 +595,7 @@ echo headerInfo($page);
     </div>
     <!-- Whatsapp end -->
 
-    <!-- Feature tools -->
-    <div class="ec-tools-sidebar-overlay"></div>
-    <div class="ec-tools-sidebar">
-        <div class="tool-title">
-            <h3>Features</h3>
-        </div>
-        <a href="#" class="ec-tools-sidebar-toggle in-out">
-            <img alt="icon" src="assets/images/common/settings.png" />
-        </a>
-        <div class="ec-tools-detail">
-            <div class="ec-tools-sidebar-content ec-change-color ec-color-desc">
-                <h3>Color Scheme</h3>
-                <ul class="bg-panel">
-                    <li class="active" data-color="01"><a href="#" class="colorcode1"></a></li>
-                    <li data-color="02"><a href="#" class="colorcode2"></a></li>
-                    <li data-color="03"><a href="#" class="colorcode3"></a></li>
-                    <li data-color="04"><a href="#" class="colorcode4"></a></li>
-                    <li data-color="05"><a href="#" class="colorcode5"></a></li>
-                </ul>
-            </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>Backgroung</h3>
-                <ul class="bg-panel">
-                    <li class="bg"><a class="back-bg-1" id="bg-1">Background-1</a></li>
-                    <li class="bg"><a class="back-bg-2" id="bg-2">Background-2</a></li>
-                    <li class="bg"><a class="back-bg-3" id="bg-3">Background-3</a></li>
-                    <li class="bg"><a class="back-bg-4" id="bg-4">Default</a></li>
-                </ul>
-            </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>Full Screen mode</h3>
-                <div class="ec-fullscreen-mode">
-                    <div class="ec-fullscreen-switch">
-                        <div class="ec-fullscreen-btn">Mode</div>
-                        <div class="ec-fullscreen-on">On</div>
-                        <div class="ec-fullscreen-off">Off</div>
-                    </div>
-                </div>
-            </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>Dark mode</h3>
-                <div class="ec-change-mode">
-                    <div class="ec-mode-switch">
-                        <div class="ec-mode-btn">Mode</div>
-                        <div class="ec-mode-on">On</div>
-                        <div class="ec-mode-off">Off</div>
-                    </div>
-                </div>
-            </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>RTL mode</h3>
-                <div class="ec-change-rtl">
-                    <div class="ec-rtl-switch">
-                        <div class="ec-rtl-btn">Rtl</div>
-                        <div class="ec-rtl-on">On</div>
-                        <div class="ec-rtl-off">Off</div>
-                    </div>
-                </div>
-            </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>Clear local storage</h3>
-                <a class="clear-cach" href="javascript:void(0)">Clear Cache & Default</a>
-            </div>
-        </div>
-    </div>
-    <!-- Feature tools end -->
+  
 
     <!-- Vendor JS -->
     <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
