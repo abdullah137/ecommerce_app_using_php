@@ -31937,6 +31937,369 @@ input[type=email]:focus::-webkit-input-placeholder {
   margin-left: 5px;
 }
 
+
+
+#edit_pass_modal .ec-vendor-block-img {
+  height: 80vh;
+  overflow-y: auto;
+}
+#edit_pass_modal .ec-vendor-block-bg {
+  width: 100%;
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+#edit_pass_modal .ec-vendor-block-bg .btns {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1;
+}
+#edit_pass_modal .ec-vendor-block-bg .btns a {
+  height: 40px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  line-height: 40px;
+  font-size: 14px;
+}
+#edit_pass_modal .cover-upload {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+#edit_pass_modal .cover-upload:after {
+  content: "";
+  width: 100%;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#edit_pass_modal .cover-upload .thumb-upload {
+  height: 200px;
+  position: relative;
+}
+#edit_pass_modal .cover-upload .thumb-upload .thumb-edit {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 1;
+}
+#edit_pass_modal .cover-upload .thumb-upload .thumb-edit input {
+  opacity: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+}
+#edit_pass_modal .cover-upload .thumb-upload .thumb-edit input + label {
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #eeeeee;
+  cursor: pointer;
+  font-weight: normal;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#edit_pass_modal .cover-upload .thumb-upload .thumb-edit input + label .svg_img {
+  opacity: 0.6;
+}
+#edit_pass_modal .cover-upload .thumb-upload .thumb-edit input + label:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+#edit_pass_modal .ec-vendor-block-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+#edit_pass_modal .ec-vendor-block-detail .v-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin-top: -70px;
+  border: 10px solid #ffffff;
+}
+#edit_pass_modal .ec-vendor-block-detail .thumb-upload {
+  position: relative;
+}
+#edit_pass_modal .ec-vendor-block-detail .thumb-upload .thumb-edit {
+  position: absolute;
+  top: -60px;
+  right: 5px;
+  z-index: 1;
+}
+#edit_pass_modal .ec-vendor-block-detail .thumb-upload .thumb-edit input {
+  opacity: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+}
+#edit_pass_modal .ec-vendor-block-detail .thumb-upload .thumb-edit input + label {
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #eeeeee;
+  cursor: pointer;
+  font-weight: normal;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#edit_pass_modal .ec-vendor-block-detail .thumb-upload .thumb-edit input + label .svg_img {
+  opacity: 0.6;
+}
+#edit_pass_modal .ec-vendor-block-detail .thumb-upload .thumb-edit input + label:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+#edit_pass_modal .ec-vendor-upload-detail .space-t-15 {
+  margin-top: 15px;
+}
+#edit_pass_modal .ec-vendor-upload-detail input, #edit_pass_modal .ec-vendor-upload-detail textarea, #edit_pass_modal .ec-vendor-upload-detail select {
+  background-color: transparent;
+  color: #777;
+  border-radius: 0;
+  border: 1px solid #eeeeee !important;
+}
+#edit_pass_modal .ec-vendor-upload-detail input, #edit_pass_modal .ec-vendor-upload-detail select {
+  height: 45px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+#edit_pass_modal .ec-vendor-upload-detail .qty_close {
+  margin-left: 5px;
+}
+
+
+
+#add_address_modal .ec-vendor-block-img {
+  height: 80vh;
+  overflow-y: auto;
+}
+#add_address_modal .ec-vendor-block-bg {
+  width: 100%;
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+#add_address_modal .ec-vendor-block-bg .btns {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1;
+}
+#add_address_modal .ec-vendor-block-bg .btns a {
+  height: 40px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  line-height: 40px;
+  font-size: 14px;
+}
+#add_address_modal .cover-upload {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+#add_address_modal .cover-upload:after {
+  content: "";
+  width: 100%;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#add_address_modal .cover-upload .thumb-upload {
+  height: 200px;
+  position: relative;
+}
+#add_address_modal .cover-upload .thumb-upload .thumb-edit {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 1;
+}
+#add_address_modal .cover-upload .thumb-upload .thumb-edit input {
+  opacity: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+}
+#add_address_modal .cover-upload .thumb-upload .thumb-edit input + label {
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #eeeeee;
+  cursor: pointer;
+  font-weight: normal;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#add_address_modal .cover-upload .thumb-upload .thumb-edit input + label .svg_img {
+  opacity: 0.6;
+}
+#add_address_modal .cover-upload .thumb-upload .thumb-edit input + label:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+#add_address_modal .ec-vendor-block-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+#add_address_modal .ec-vendor-block-detail .v-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin-top: -70px;
+  border: 10px solid #ffffff;
+}
+#add_address_modal .ec-vendor-block-detail .thumb-upload {
+  position: relative;
+}
+#add_address_modal .ec-vendor-block-detail .thumb-upload .thumb-edit {
+  position: absolute;
+  top: -60px;
+  right: 5px;
+  z-index: 1;
+}
+#add_address_modal .ec-vendor-block-detail .thumb-upload .thumb-edit input {
+  opacity: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+}
+#add_address_modal .ec-vendor-block-detail .thumb-upload .thumb-edit input + label {
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #eeeeee;
+  cursor: pointer;
+  font-weight: normal;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#add_address_modal .ec-vendor-block-detail .thumb-upload .thumb-edit input + label .svg_img {
+  opacity: 0.6;
+}
+#add_address_modal .ec-vendor-block-detail .thumb-upload .thumb-edit input + label:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+#add_address_modal .ec-vendor-upload-detail .space-t-15 {
+  margin-top: 15px;
+}
+#add_address_modal .ec-vendor-upload-detail input, #add_address_modal .ec-vendor-upload-detail textarea, #add_address_modal .ec-vendor-upload-detail select {
+  background-color: transparent;
+  color: #777;
+  border-radius: 0;
+  border: 1px solid #eeeeee !important;
+}
+#add_address_modal .ec-vendor-upload-detail input, #add_address_modal .ec-vendor-upload-detail select {
+  height: 45px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+#add_address_modal .ec-vendor-upload-detail .qty_close {
+  margin-left: 5px;
+}
 /*-------------------------------------------------
   User account Page CSS
 ---------------------------------------------------*/

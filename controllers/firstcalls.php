@@ -119,11 +119,32 @@ function headerInfo($page) {
         $title = "Product Full Description";
     }else if($page == "contact") {
         $title = "Contact Us";
+    }else if($page == "cart") {
+        $title = "Cart Page";
+    }else if($page == "category"){
+        $title = "Shop Category";
+    }else if($page == "history"){
+        $title = "List Of Purchased Items";
+    }else if($page == "wishlist"){
+        $title = "Wishlist Page";
     }else {
         $title = "Null ";
     }
 
+    // Checking to see if our session is on
+    // Then, Get User's Input
+    if(isset($_SESSION['cart'])) {
+        $subtotal = 0;
+        $totalcount= 0;
+        foreach($_SESSION['cart'] as $sub_array) {
+            $subtotal += $sub_array['price'] * $sub_array['count'];
+            $totalcount = $totalcount + $sub_array['count'];
+        }
+    }else {
 
+        $totalcount = "";
+        $subtotal = "";
+    }
 
     $header = '
     
@@ -229,8 +250,7 @@ function headerInfo($page) {
                                         src="assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a class="dropdown-item" href="register?ref=false">Register</a></li>
-                                    <li><a class="dropdown-item" href="checkout">Checkout</a></li>
-                                    <li><a class="dropdown-item" href="login?ref=false">Login</a></li>
+                                    <li><a class="dropdown-item" href="account">My Account</a></li>
                                 </ul>
                             </div>
                             <!-- Header User End -->
@@ -297,8 +317,7 @@ function headerInfo($page) {
                                             src="assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li><a class="dropdown-item" href="register?ref=false">Register</a></li>
-                                        <li><a class="dropdown-item" href="checkout">Checkout</a></li>
-                                        <li><a class="dropdown-item" href="login?ref=false">Login</a></li>
+                                        <li><a class="dropdown-item" href="account">My Account</a></li>
                                     </ul>
                                 </div>
                                 <!-- Header User End -->
@@ -306,14 +325,14 @@ function headerInfo($page) {
                                 <a href="wishlist" class="ec-header-btn ec-header-wishlist">
                                     <div class="header-icon"><img src="assets/images/icons/wishlist.svg"
                                             class="svg_img header_svg" alt="" /></div>
-                                    <span class="ec-header-count">4</span>
+                                    <span class="ec-header-count">0</span>
                                 </a>
                                 <!-- Header wishlist End -->
                                 <!-- Header Cart Start -->
                                 <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
                                     <div class="header-icon"><img src="assets/images/icons/cart.svg"
                                             class="svg_img header_svg" alt="" /></div>
-                                    <span class="ec-header-count cart-count-lable">3</span>
+                                    <span class="ec-header-count cart-count-lable">'.@$totalcount.'</span>
                                 </a>
                                 <!-- Header Cart End -->
                             </div>
@@ -955,4 +974,295 @@ function updateAddress($f_name, $s_name, $phone, $street, $city, $lga, $id, $def
 		header("Location: /".custom_site_base()."address-book");
 	}
 	return $data;
+}
+
+function cart($page) {
+    if(isset($_SESSION['cart'])) {
+        $subtotal = 0;
+        $totalcount= 0;
+        $cart_content = "";
+        $transport = 500;
+        foreach($_SESSION['cart'] as $sub_array) {
+            $subtotal += $sub_array['price'] * $sub_array['count'];
+
+            $totalcount = $totalcount + $sub_array['count'];
+            if($sub_array['count'] == 1) {
+                $sub_array['counttext'] = "item";
+            }else {
+                $sub_array['counttext'] = "items";
+            }
+            $cart_content .= '
+            <li>
+            <a href="" class="sidekka_pro_img"><img
+                    src="'.$sub_array['url'].'" alt="product"></a>
+            <div class="ec-pro-content">
+                <a href="" class="cart_pro_title">'.$sub_array['name'].'</a>
+                <span class="cart-price"><span>'.number_format($sub_array['price'], 2).'</span> x '.$sub_array['count'].'</span>
+                <div class="qty-plus-minus">
+                    <input class="qty-input" type="text" name="ec_qtybtn" value="'.$sub_array['count'].'" />
+                </div>
+                <a href="javascript:void(0)" class="remove">×</a>
+            </div>
+            <input type="hidden" value="'.$sub_array['id'].'" name="product_id" />
+        </li>
+            ';
+
+            if($totalcount == 1) {
+                $totalcounttext = "item";
+            }else {
+                $totalcounttext = "items";
+            }
+            $total = $subtotal+$transport;
+
+            $data = '
+            <div class="ec-side-cart-overlay"></div>
+            <div id="ec-side-cart" class="ec-side-cart">
+                <div class="ec-cart-inner">
+                    <div class="ec-cart-top">
+                        <div class="ec-cart-title">
+                            <span class="cart_title">My Cart</span>
+                            <button class="ec-close">×</button>
+                        </div>
+                        <ul class="eccart-pro-items">
+                            '.$cart_content.'
+                        </ul>
+                    </div>
+                    <div class="ec-cart-bottom">
+                        <div class="cart-sub-total">
+                            <table class="table cart-table">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left">Sub-Total :</td>
+                                        <td class="text-right cart_subtotal">#'.number_format($subtotal, 2).'</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">VAT (20%) :</td>
+                                        <td class="text-right cart_dfee">#'.$transport.'</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">Total :</td>
+                                        <td class="text-right primary-color cart_total">#'.$total.'</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cart_btn">
+                            <a href="cart" class="btn btn-primary">View Cart</a>
+                            <a href="checkout" class="btn btn-secondary">Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ';
+
+        }
+    }else {
+        $cart_content = "";
+        $total = "";
+        $subtotal = "";
+        $transport = "";
+        $data =  '<div class="ec-side-cart-overlay"></div>
+        <div id="ec-side-cart" class="ec-side-cart">
+            <div class="ec-cart-inner">
+                <div class="ec-cart-top">
+                    <div class="ec-cart-title">
+                        <span class="cart_title">My Cart</span>
+                        <button class="ec-close">×</button>
+                    </div>
+                    <ul class="eccart-pro-items">
+                        '.$cart_content.'
+                    </ul>
+                </div>
+                <div class="ec-cart-bottom">
+                <div class="cart-sub-total">
+                    <table class="table cart-table">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Sub-Total :</td>
+                                <td class="text-right cart_subtotal">#'.@number_format($subtotal, 2).'</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">VAT (20%) :</td>
+                                <td class="text-right cart_dfee">#'.$transport.'</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Total :</td>
+                                <td class="text-right primary-color cart_total">#'.$total.'</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cart_btn">
+                    <a href="cart" class="btn btn-primary">View Cart</a>
+                    <a href="checkout" class="btn btn-secondary">Checkout</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        ';
+    }
+
+    return $data;
+}
+
+function cart_page($page) {
+
+    if(isset($_SESSION['cart'])) {
+       
+        $totalcount = 0;
+        $cart_content = "";
+        $subtotal = 0;
+
+        foreach($_SESSION['cart'] as $sub_array) {
+            
+            $totalcount = $totalcount+$sub_array['count'];
+            
+          $subtotal += $sub_array['price'] * $sub_array['count'];
+            $totalcount = $totalcount + $sub_array['count'];
+
+            $cart_content .= '
+            <tr>
+            <td data-label="Product" class="ec-cart-pro-name"><a
+                    href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
+                        src="'.$sub_array['url'].'"
+                        alt="" />'.$sub_array['name'].'</a></td>
+            <td data-label="Price" class="ec-cart-pro-price"><span
+                    class="amount">#'.number_format($sub_array['price'], 2).'</span></td>
+            <td data-label="Quantity" class="ec-cart-pro-qty"
+                style="text-align: center;">
+                <div class="cart-qty-plus-minus">
+                    <input class="cart-plus-minus" type="text"
+                        name="cartqtybutton" value="'.$sub_array['count'].'" />
+                </div>
+            </td>
+            <td data-label="Total" class="ec-cart-pro-subtotal">#'.number_format($sub_array['price'], 2).'</td>
+            <td data-label="Remove" class="ec-cart-pro-remove">
+                <a href="#"><i class="ecicon eci-trash-o"></i></a>
+            </td>
+        </tr>
+            ';   
+            
+        }
+        $data = $cart_content;
+    }else {
+        $data = '
+        <tr>
+        <td data-label="Product" class="ec-cart-pro-name"><a
+                href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
+                    src="assets/images/product-image/1.jpg"
+                    alt="" />Stylish Baby Shoes</a></td>
+        <td data-label="Price" class="ec-cart-pro-price"><span
+                class="amount">$56.00</span></td>
+        <td data-label="Quantity" class="ec-cart-pro-qty"
+            style="text-align: center;">
+            <div class="cart-qty-plus-minus">
+                <input class="cart-plus-minus" type="text"
+                    name="cartqtybutton" value="1" />
+            </div>
+        </td>
+        <td data-label="Total" class="ec-cart-pro-subtotal">$56.00</td>
+        <td data-label="Remove" class="ec-cart-pro-remove">
+            <a href="#"><i class="ecicon eci-trash-o"></i></a>
+        </td>
+    </tr>
+        ';
+    }
+
+    return $data;
+}
+
+function cart_subtotal($page) {
+
+    if(isset($_SESSION['cart'])) {
+       
+        $totalcount = 0;
+        $cart_content = "";
+        $subtotal = 0;
+
+        foreach($_SESSION['cart'] as $sub_array) {
+            
+            $totalcount = $totalcount+$sub_array['count'];
+            
+          $subtotal += $sub_array['price'] * $sub_array['count'];
+            $totalcount = $totalcount + $sub_array['count'];
+            
+            $total = $subtotal + 150;
+            
+            $data = '
+            <div class="ec-cart-summary-bottom">
+            <div class="ec-cart-summary">
+                <div>
+                    <span class="text-left">Sub-Total</span>
+                    <span class="text-right"># '.number_format($subtotal, 2).'</span>
+                </div>
+                <div>
+                    <span class="text-left">Delivery Charges</span>
+                    <span class="text-right"># '.number_format(150, 2).'</span>
+                </div>
+                <div>
+                    <span class="text-left">Coupan Discount</span>
+                    <span class="text-right"><a class="ec-cart-coupan">Apply Coupan</a></span>
+                </div>
+                <div class="ec-cart-coupan-content">
+                    <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
+                        action="#">
+                        <input class="ec-coupan" type="text" required=""
+                            placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                        <button class="ec-coupan-btn button btn-primary" type="submit"
+                            name="subscribe" value="">Apply</button>
+                    </form>
+                </div>
+                <div class="ec-cart-summary-total">
+                    <span class="text-left">Total Amount</span>
+                    <span class="text-right"># '.number_format($total, 2).'</span>
+                </div>
+            </div>
+
+        </div>
+
+            ';   
+            
+        }
+        
+    }else {
+        $subtotal = 0;
+        $total = 0;
+         $data = '
+            <div class="ec-cart-summary-bottom">
+            <div class="ec-cart-summary">
+                <div>
+                    <span class="text-left">Sub-Total</span>
+                    <span class="text-right">#'.$subtotal.'</span>
+                </div>
+                <div>
+                    <span class="text-left">Delivery Charges</span>
+                    <span class="text-right">#150.00</span>
+                </div>
+                <div>
+                    <span class="text-left">Coupan Discount</span>
+                    <span class="text-right"><a class="ec-cart-coupan">Apply Coupan</a></span>
+                </div>
+                <div class="ec-cart-coupan-content">
+                    <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
+                        action="#">
+                        <input class="ec-coupan" type="text" required=""
+                            placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                        <button class="ec-coupan-btn button btn-primary" type="submit"
+                            name="subscribe" value="">Apply</button>
+                    </form>
+                </div>
+                <div class="ec-cart-summary-total">
+                    <span class="text-left">Total Amount</span>
+                    <span class="text-right">'.$total.'</span>
+                </div>
+            </div>
+
+        </div>
+
+            ';   
+    }
+
+    return $data;
+
 }

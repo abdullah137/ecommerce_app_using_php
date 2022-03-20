@@ -23,7 +23,7 @@ echo headerInfo($page);
 ?>
 
     <!-- ekka Cart Start -->
-   <?php include "includes/cart.php"; ?>
+   <?php echo cart($page); ?>
     <!-- ekka Cart End -->
 
     <!-- Ec breadcrumb start -->
